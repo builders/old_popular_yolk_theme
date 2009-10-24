@@ -9,7 +9,7 @@
 		<li class="date">
 			<xsl:call-template name="format-date">
 				<xsl:with-param name="date" select="date"/>
-				<xsl:with-param name="format" select="'d m y'"/>
+				<xsl:with-param name="format" select="'M d, Y'"/>
 			</xsl:call-template>
 		</li>
 		<li class="title">
@@ -31,40 +31,43 @@
 </xsl:template>
 
 <xsl:template match="drafts/entry">
-	<div class="article">
-		<h3>
+	<div class="entry">
+		<h2 class="entry-title">
+			<xsl:value-of select="title"/>
+		</h2>
+
+		<p class="meta">
 			<xsl:call-template name="format-date">
 				<xsl:with-param name="date" select="date"/>
-				<xsl:with-param name="format" select="'D m Y'"/>
+				<xsl:with-param name="format" select="'M d, Y'"/>
 			</xsl:call-template>
 			<xsl:if test="$is-logged-in = 'true'">
 				<xsl:text> &#8212; </xsl:text>
 				<a class="edit" href="{$root}/symphony/publish/{../section/@handle}/edit/{@id}/">Edit</a>
 			</xsl:if>
-		</h3>
-		<h2>
-			<a href="{$root}/articles/{title/@handle}/"><xsl:value-of select="title"/></a>
-		</h2>
-		<ul class="meta">
-			<li class="icon-filed-under">
-				<xsl:apply-templates select="categories/item"/>
-			</li>
-		</ul>
-		<xsl:apply-templates select="body/*[position() &lt;= 2]" mode="html"/>
-		<xsl:call-template name="get-images">
-			<xsl:with-param name="entry-id" select="@id"/>
-		</xsl:call-template>
-		<xsl:apply-templates select="body/*[position() &gt; 2]" mode="html"/>
+		</p>
+
+		<div class="entry-content">
+			<xsl:apply-templates select="body/*[position() &lt;= 2]" mode="html"/>
+			<xsl:call-template name="get-images">
+				<xsl:with-param name="entry-id" select="@id"/>
+			</xsl:call-template>
+			<xsl:apply-templates select="body/*[position() &gt; 2]" mode="html"/>
+		</div>
+
+		<p class="meta">
+			Filed under: <xsl:apply-templates select="categories/item"/>
+		</p>
+
+		<form id="publish-article" action="{$current-url}" method="post">
+			<fieldset>
+				<input name="fields[publish]" value="yes" type="hidden" /> 
+				<input name="redirect" value="{$root}/articles/{title/@handle}/" type="hidden" />
+				<input name="id" value="{@id}" type="hidden" />
+				<input type="submit" name="action[publish-article]" value="Publish"/>
+			</fieldset>
+		</form>
 	</div>
-	<hr/>
-	<form id="publish-article" action="" method="post">
-		<fieldset>
-			<input name="fields[publish]" value="yes" type="hidden" /> 
-			<input name="redirect" value="{$root}/articles/{title/@handle}/" type="hidden" />
-			<input name="id" value="{@id}" type="hidden" />
-			<button id="submit" type="submit" name="action[publish-article]" value="Publish" />
-		</fieldset>
-	</form>
 </xsl:template>
 
 <xsl:template match="drafts/error">

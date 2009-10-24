@@ -5,19 +5,19 @@
 <xsl:import href="../utilities/get-drafts.xsl"/>
 
 <xsl:template match="data">
-	<xsl:choose>
-		<xsl:when test="$entry = ''">
-			<h3>Draft</h3>
-			<h2>Secret lair</h2>
-			<xsl:apply-templates select="drafts/entry" mode="list"/>
-			<xsl:apply-templates select="drafts/error"/>
-		</xsl:when>
-		<xsl:otherwise>
-			<div id="article">
+	<div class="entry">
+		<xsl:choose>
+			<xsl:when test="$entry = ''">
+				<h3>Draft</h3>
+				<h2>Secret lair</h2>
+				<xsl:apply-templates select="drafts/entry" mode="list"/>
+				<xsl:apply-templates select="drafts/error"/>
+			</xsl:when>
+			<xsl:otherwise>
 				<xsl:apply-templates select="drafts/entry"/>
-			</div>
-		</xsl:otherwise>
-	</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</div>
 </xsl:template>
 
 </xsl:stylesheet>
