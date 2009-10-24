@@ -3,11 +3,11 @@
 
 <xsl:import href="../utilities/master.xsl"/>
 <xsl:import href="../utilities/get-article.xsl"/>
-<xsl:import href="../utilities/get-notes.xsl"/>
 <xsl:import href="../utilities/get-comments.xsl"/>
 
 <xsl:template match="data">
 	<xsl:apply-templates select="homepage-articles/entry"/>
+	<xsl:apply-templates select="homepage-articles/error"/>
 </xsl:template>
 
 </xsl:stylesheet>

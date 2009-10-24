@@ -255,3 +255,27 @@ th {
 img#symstats{
 	display:none
 }
+
+ul.list {
+	border-bottom: 1px dotted #ccc;
+	list-style:none;
+	padding:0.5em 0px;
+	overflow:hidden;
+}
+
+ul.list li {
+	display:inline;
+}
+
+ul.list li.date {
+	float:left;
+}
+
+ul.list li.title {
+	float:left;
+	margin-left:25px;
+}
+
+ul.list li.comments, ul.list li.categories {
+	float:right;
+}

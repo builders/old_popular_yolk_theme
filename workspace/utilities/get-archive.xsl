@@ -3,42 +3,37 @@
 
 <xsl:template match="archive">
 	<xsl:apply-templates select="year"/>
+	<xsl:apply-templates select="error"/>
+</xsl:template>
+
+<xsl:template match="error">
+	<span>No documents found.</span>
 </xsl:template>
 
 <xsl:template match="year">
-	<table width="100%" cellspacing="0" cellpadding="0" border="0">
-		<thead>
-			<tr>
-				<th>Date</th>
-				<th>Title</th>
-				<th class="textcenter">Comments</th>
-			</tr>
-		</thead>
-		<tbody>
-			<xsl:apply-templates select="month/entry"/>
-		</tbody>
-	</table>
+	<xsl:apply-templates select="month/entry"/>
 </xsl:template>
 
+
 <xsl:template match="month/entry">
-	<tr>
-		<td>
+	<ul class="list">
+		<li class="date">
 			<xsl:call-template name="format-date">
 				<xsl:with-param name="date" select="date"/>
-				<xsl:with-param name="format" select="'x M y'"/>
+				<xsl:with-param name="format" select="'M d, Y'"/>
 			</xsl:call-template>
-		</td>
-		<td>
+		</li>
+		<li class="title">
 			<a href="{$root}/articles/{title/@handle}/">
 				<xsl:value-of select="title"/>
 			</a>
-		</td>
-		<td class="textcenter">
+		</li>
+		<li class="comments">
 			<a href="{$root}/articles/{title/@handle}/#comments">
-				<xsl:value-of select="@comments"/>
+				Comments (<xsl:value-of select="@comments"/>)
 			</a>
-		</td>
-	</tr>
+		</li>
+	</ul>
 </xsl:template>
 
 </xsl:stylesheet>

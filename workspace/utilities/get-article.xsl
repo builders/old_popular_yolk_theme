@@ -47,6 +47,13 @@
 	</div>
 </xsl:template>
 
+<xsl:template match="homepage-articles/error">
+	<div class="entry">
+		<h4>No articles found. Please back later.</h4>
+	</div>
+</xsl:template>
+
+
 <xsl:template match="article/entry">
 	<div class="entry">
 		<h2 class="entry-title">
