@@ -4,20 +4,24 @@ Old Popular Yolk Theme
 This theme was originally created by [joshuagoodwin](http://joshuagoodwin.com/) and then ported to Symphony by [me](mailto:rainerborene@gmail.com).
 
 Author: [Rainer Borene](http://github.com/rainerborene/old_popular_yolk_theme)  
-Version: 1.0  
+Version: 1.1  
 Date: 18 October 2009  
 Github Repository: [http://github.com/rainerborene/old_popular_yolk_theme](http://github.com/rainerborene/old_popular_yolk_theme)  
 
-Installation
-------------
+### Installation
 
 1. Get the latest version of Symphony.
 2. Get this theme and replace all files.
 3. You're ready to Install Symphony.
 
-Questions
----------
+### Change Log
 
-Any question or you found a bug? Please, post an issue!
+Version 1.1 - 25 October 2009
 
-**Enjoy!**
+* Logged users doesn't need to fill some fields
+* Fixed publish button
+* Some markup adjustments
+
+Version 1.0 - 18 October 2009
+
+* Initial release
